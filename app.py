@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from data import show_data, nama
+from data import show_data, kolom, select_year, load_data, filter_data, pie_chart1
 
 
 #judul dashboard
@@ -11,13 +11,21 @@ def judul ():
 
 st.sidebar.title("Navigasi")
 menu = st.sidebar.radio("Pilih Halaman", ["Home", "Halaman data"])
+
 if menu == "Home":
     judul()
-    nama()
+    year = select_year()
+    df = load_data()
+    df_filtered = filter_data(df, year)
+    kolom(df_filtered)
+    pie_chart1(df_filtered)
+    
 elif menu == "Halaman data":
     judul()
-    show_data()
-    nama()
+    year = select_year()
+    df = load_data()
+    df_filtered = filter_data(df, year)
+    show_data(df_filtered)
    
 # Selesai: Dashboard Covid-19 berhasil diimplementasikan dengan navigasi interaktif.
 
