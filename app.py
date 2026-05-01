@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from data import show_data, kolom, select_year, load_data, filter_data, pie_chart1
+from data import show_data, kolom, select_year, load_data, filter_data, pie_chart1, select_location
 
 
 #judul dashboard
@@ -14,9 +14,10 @@ menu = st.sidebar.radio("Pilih Halaman", ["Home", "Halaman data"])
 
 if menu == "Home":
     judul()
-    year = select_year()
     df = load_data()
-    df_filtered = filter_data(df, year)
+    year = select_year()
+    location = select_location(df)
+    df_filtered = filter_data(df, year, location)
     kolom(df_filtered)
     pie_chart1(df_filtered)
     
